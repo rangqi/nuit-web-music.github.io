@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>网页音乐播放器 · 陈奕迅《沙龙》</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="minimal">
+    <main class="layout" aria-label="音乐播放器">
+      <section class="discArea" aria-label="黑胶唱片">
+        <div class="disc" id="disc">
+          <img id="coverImg" class="disc__cover" src="./images/Easonchan-H3M-cover.jpg" alt="封面" />
+        </div>
+      </section>
+
+      <section class="infoArea" aria-label="歌曲信息与歌词">
+        <h1 class="songTitle" id="trackTitle">沙龙</h1>
+        <div class="songArtist" id="trackArtist">陈奕迅</div>
+
+        <div class="lyrics" aria-label="歌词">
+          <div id="lyricsLines" class="lyricsLines" aria-label="歌词行"></div>
+          <div id="lyricsEmpty" class="lyricLine lyricEmpty" hidden>
+            未加载到歌词：请在 <code>app.js</code> 里填写内置 LRC 文本
+          </div>
+          <div class="studentLine">学号：25216950529　姓名：文坚良</div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="bar" aria-label="播放条">
+      <div class="bar__progress" aria-label="进度条">
+        <span class="time" id="currentTime">00:00</span>
+        <input id="progressRange" class="seek" type="range" min="0" max="1000" value="0" step="1" />
+        <span class="time" id="duration">00:00</span>
+      </div>
+
+      <div class="bar__bottom" aria-label="播放控制与音量">
+        <div class="bar__spacer" aria-hidden="true"></div>
+
+        <div class="bar__controls" role="group" aria-label="播放控制">
+          <button id="prevBtn" class="iconBtn" type="button" title="上一曲 (Shift+←)" aria-label="上一曲">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M6 5h2v14H6V5zm3.5 7L20 5v14L9.5 12z" />
+            </svg>
+          </button>
+          <button
+            id="playBtn"
+            class="iconBtn iconBtn--play"
+            type="button"
+            title="播放/暂停 (Space)"
+            aria-label="播放/暂停"
+          >
+            <span id="playIcon" class="playIcon" aria-hidden="true">
+              <svg class="icon icon--play" viewBox="0 0 24 24">
+                <path d="M8 5v14l12-7L8 5z" />
+              </svg>
+              <svg class="icon icon--pause" viewBox="0 0 24 24">
+                <path d="M7 5h4v14H7V5zm6 0h4v14h-4V5z" />
+              </svg>
+            </span>
+          </button>
+          <button id="nextBtn" class="iconBtn" type="button" title="下一曲 (Shift+→)" aria-label="下一曲">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M16 5h2v14h-2V5zM4 19V5l10.5 7L4 19z" />
+            </svg>
+          </button>
+        </div>
+
+        <div class="bar__volume" aria-label="音量">
+          <svg class="icon icon--vol" viewBox="0 0 24 24" aria-hidden="true">
+            <path
+              d="M4 10v4h3l4 4V6L7 10H4zm11.5 2a4.5 4.5 0 0 0-2.5-4v8a4.5 4.5 0 0 0 2.5-4zm2.5 0c0 3.07-1.64 5.75-4 7v-2.2a5.5 5.5 0 0 0 0-9.6V5c2.36 1.25 4 3.93 4 7z"
+            />
+          </svg>
+          <input id="volumeRange" class="vol" type="range" min="0" max="1" value="0.85" step="0.01" />
+        </div>
+      </div>
+    </footer>
+
+    <audio id="audio" preload="metadata"></audio>
+    <script src="app.js"></script>
+  </body>
+</html>
