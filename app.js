@@ -1,16 +1,6 @@
-const tracks = [
-  {
-    title: "沙龙",
-    artist: "陈奕迅",
-    src: "assets/shalong.mp3",
-    cover: "./images/Easonchan-H3M-cover.jpg",
-    lrc: "lyrics/shalong.lrc",
-  },
-];
-
 // 为了避免 file:// 下同源策略限制，这里把 LRC “写死”在代码中。
-// 直接把你自己的 shalong.lrc 全文粘贴到下面（保持原格式）。
-const EMBEDDED_LRC = String.raw`[00:00.000] 作曲 : 陈奕迅
+// 后续你可以直接把对应歌曲的 .lrc 全文粘贴到下面（保持原格式）。
+const EMBEDDED_LRC_SHALONG = String.raw`[00:00.000] 作曲 : 陈奕迅
 [00:01.000] 作词 : 黄伟文
 [00:04.460] 编曲：C. Y. Kong / Gary Tong / Davy Chan
 [00:05.460] 监制：Eason / Stanley Leung / C. Y. / Davy Chan
@@ -51,6 +41,102 @@ const EMBEDDED_LRC = String.raw`[00:00.000] 作曲 : 陈奕迅
 [04:03.010] 何来尘埃飞舞
 `;
 
+const EMBEDDED_LRC_SIJI = String.raw`[00:00.000] 作曲 : 周国贤
+[00:00.010] 作词 : 小克
+[00:00.30]编曲 : C.Y.Kong
+[00:15.55]我记起那年春天
+[00:18.70]得我一个不知的欺骗
+[00:22.84]如天空的污染 终于都上演
+[00:28.57]我记起那年暑天
+[00:31.65]友情爱情两边都发现亏欠
+[00:37.65]情路上跌损
+[00:40.84]最后已事过境迁 长街风景已变
+[00:47.44]再度回想谁的脸 往日那位少年
+[00:55.26]又再路过事发景点 痛伤少不免
+[01:00.78]仍是会流泪失眠
+[01:07.61]尚记得当天贯心的一箭
+[01:29.29]我记起那年秋天
+[01:32.20]飞过一只心酸小孤燕
+[01:36.63]半枯干的枝节于窗边发展
+[01:42.31]我记起那年的冬天
+[01:45.73]半蒙半胧困于茧里面
+[01:50.15]兜转缘份未看穿
+[01:55.52]最后已事过境迁 长街风景已变
+[02:01.23]再度回想谁的脸 往日那位少年
+[02:08.92]又再路过事发景点 痛伤少不免
+[02:14.60]仍是会流泪失眠
+[02:21.29]泪染穿心穿肺那一点
+[02:53.00]季度里事过境迁 蝴蝶终于蜕变
+[02:58.24]再没留恋谁的脸 往日两位少年
+[03:06.11]就算让世事再翻演 会否不改变
+[03:11.70]仍是会离别 纠缠
+[03:18.64]拔去穿心一箭感恩不怨
+[03:26.65]我感激这年春天
+[03:29.89]花再开遍祝福相献
+[03:35.32]待那丘比特放出新一箭
+`;
+
+const EMBEDDED_LRC_YIRENZHIJING = String.raw`[00:00.00]林家谦 - 一人之境
+[00:01.46]词：林家谦
+[00:01.99]曲：林家谦
+[00:02.52]编曲：林家谦
+[00:03.17]监制：林家谦
+[00:03.81]编程 Programming：林家谦
+[00:04.55]键盘 Keyboard：林家谦
+[00:05.28]电结他 Electric Guitar：T-Ma马敬恒
+[00:06.35]贝斯 Bass：T-Ma马敬恒
+[00:07.19]弦乐编写 Strings Arrangement：林家谦
+[00:08.37]铜管乐编写 Brass Arrangement：林家谦
+[00:09.53]和声编写 Backing Vocal Arrangement：林家谦
+[00:10.65]和声 Backing Vocal：林家谦
+[00:11.44]混音师 Mixing Engineer：Frankie Hung
+[00:12.27]录音室 Recording Studio：林家
+[00:13.10]混音室 Mixing Studio：Air Studio
+[00:13.90]OP：Terence Lam Production &Co.
+[00:14.66]SP：Warner/Chappell Music, H.K. Ltd.
+[00:17.73]派对里凝望 友伴笑脸八个十个
+[00:24.79]节奏里摇荡 快乐中感寂寞
+[00:32.60]散去了回望 有着丁点孤寡 但自由
+[00:40.26]想拆开交结的网 独占天清气朗
+[00:47.68]泥路上边走边数数脚印 竟发现某些裂痕
+[00:55.61]听到内心 学会修补再嵌 别把声音软禁
+[01:03.66]一个人原来都可以尽兴 多了人却还没多高兴
+[01:11.83]沉默看星 听到月光呼应
+[01:15.54]继而平静到访这一人之境
+[01:19.89]原来也很高兴 独个俯瞰每颗山幽之岭
+[01:27.83]干一罐的汽水 呼出叹息 快乐懒说明 no~
+[01:37.25]自己一个做证
+[01:58.62]沿路亮起街灯抚摸着我 光线绽放出冀望
+[02:06.30]浮云日出幻变中交错过 像已找到答案
+[02:14.35]一个人原来都可以尽兴 多了人却还没多高兴
+[02:22.64]沉默看星 期待日光牵领
+[02:26.27]继而平静到访这风花雪之境
+[02:30.68]原来已很高兴 独个观看世间变幻事情
+[02:38.49]干一罐的汽水 呼出泡影 听着那共鸣声
+[02:48.36]是种心理回应
+`;
+
+const tracks = [
+  {
+    title: "一人之境",
+    artist: "林家谦",
+    src: "assets/一人之境.mp3",
+    lrcText: EMBEDDED_LRC_YIRENZHIJING,
+  },
+  {
+    title: "四季",
+    artist: "陈奕迅",
+    src: "assets/四季.mp3",
+    lrcText: EMBEDDED_LRC_SIJI,
+  },
+  {
+    title: "沙龙",
+    artist: "陈奕迅",
+    src: "assets/shalong.mp3",
+    lrcText: EMBEDDED_LRC_SHALONG,
+  },
+];
+
 const audio = document.getElementById("audio");
 const disc = document.getElementById("disc");
 const coverImg = document.getElementById("coverImg");
@@ -58,6 +144,10 @@ const trackTitle = document.getElementById("trackTitle");
 const trackArtist = document.getElementById("trackArtist");
 const lyricsLinesEl = document.getElementById("lyricsLines");
 const lyricsEmptyEl = document.getElementById("lyricsEmpty");
+const playlistEl = document.getElementById("playlist");
+const playlistCountEl = document.getElementById("playlistCount");
+const playlistToggleBtn = document.getElementById("playlistToggleBtn");
+const playlistPanel = document.getElementById("playlistPanel");
 
 const playBtn = document.getElementById("playBtn");
 const playIcon = document.getElementById("playIcon");
@@ -77,6 +167,17 @@ let lyricOffsetSec = 0;
 
 function clamp(value, min, max) {
   return Math.min(max, Math.max(min, value));
+}
+
+function getFileStem(path) {
+  const file = String(path || "").split(/[\\/]/).pop() || "";
+  return file.replace(/\.[^/.]+$/, "");
+}
+
+function resolveCoverFromTrack(track) {
+  const stem = getFileStem(track?.src);
+  if (!stem) return "./images/Easonchan-H3M-cover.jpg";
+  return `./images/${stem}.jpg`;
 }
 
 function rgbToHex(r, g, b) {
@@ -220,6 +321,7 @@ function renderLyrics() {
 }
 
 function ensureVisible(container, el) {
+  if (container.clientHeight <= 0) return;
   const pad = 24;
   const top = el.offsetTop;
   const bottom = top + el.offsetHeight;
@@ -304,6 +406,88 @@ async function safePlay() {
   }
 }
 
+function setPlaylistPanelOpen(open) {
+  if (!playlistPanel || !playlistToggleBtn) return;
+  playlistPanel.hidden = !open;
+  playlistToggleBtn.setAttribute("aria-expanded", String(open));
+  if (open) updatePlaylistActive();
+}
+
+function togglePlaylistPanel() {
+  if (!playlistPanel) return;
+  setPlaylistPanelOpen(playlistPanel.hidden);
+}
+
+function renderPlaylist() {
+  if (!playlistEl) return;
+
+  playlistEl.innerHTML = "";
+  for (let i = 0; i < tracks.length; i++) {
+    const t = tracks[i];
+
+    const li = document.createElement("li");
+    li.className = "playlistItem";
+    li.dataset.index = String(i);
+
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "playlistItem__btn";
+    btn.dataset.index = String(i);
+    btn.setAttribute("aria-label", `播放：${t.title} - ${t.artist}`);
+
+    const meta = document.createElement("span");
+    meta.className = "playlistItem__meta";
+
+    const name = document.createElement("span");
+    name.className = "playlistItem__name";
+    name.textContent = t.title;
+
+    const artist = document.createElement("span");
+    artist.className = "playlistItem__artist";
+    artist.textContent = t.artist;
+
+    meta.appendChild(name);
+    meta.appendChild(artist);
+
+    const state = document.createElement("span");
+    state.className = "playlistItem__state";
+
+    btn.appendChild(meta);
+    btn.appendChild(state);
+    li.appendChild(btn);
+    playlistEl.appendChild(li);
+  }
+
+  if (playlistCountEl) playlistCountEl.textContent = `${tracks.length} 首`;
+  updatePlaylistActive();
+}
+
+function updatePlaylistActive() {
+  if (!playlistEl) return;
+
+  const playing = !audio.paused && !audio.ended;
+  const activeText = playing ? "播放中" : "当前";
+  const items = playlistEl.querySelectorAll(".playlistItem");
+
+  for (const li of items) {
+    const idx = Number(li.dataset.index);
+    const isActive = idx === currentIndex;
+    li.classList.toggle("is-active", isActive);
+
+    const btn = li.querySelector(".playlistItem__btn");
+    if (btn) {
+      if (isActive) btn.setAttribute("aria-current", "true");
+      else btn.removeAttribute("aria-current");
+    }
+
+    const state = li.querySelector(".playlistItem__state");
+    if (state) state.textContent = isActive ? activeText : "";
+  }
+
+  const activeItem = playlistEl.querySelector(`.playlistItem[data-index="${currentIndex}"]`);
+  if (activeItem) ensureVisible(playlistEl, activeItem);
+}
+
 function loadTrack(index) {
   currentIndex = clamp(index, 0, tracks.length - 1);
   const track = tracks[currentIndex];
@@ -315,13 +499,17 @@ function loadTrack(index) {
     disc.style.animation = "";
   }
 
+  updatePlaylistActive();
+  document.title = `网页音乐播放器 · ${track.artist}《${track.title}》`;
+
   trackTitle.textContent = track.title;
   trackArtist.textContent = track.artist;
-  coverImg.src = track.cover;
+  coverImg.dataset.fallbackApplied = "0";
+  coverImg.src = encodeURI(resolveCoverFromTrack(track));
   if (coverImg.complete) trySetBgFromImage(coverImg);
-  loadLyricsFromText(EMBEDDED_LRC);
+  loadLyricsFromText(track.lrcText || "");
 
-  audio.src = track.src;
+  audio.src = encodeURI(track.src);
   audio.load();
 
   progressRange.value = "0";
@@ -336,6 +524,7 @@ function updatePlayUI() {
   if (playIcon) playIcon.dataset.state = playing ? "pause" : "play";
   document.body.classList.toggle("is-playing", playing);
   if (disc) disc.setAttribute("aria-label", playing ? "唱片旋转中" : "唱片已停止");
+  updatePlaylistActive();
 }
 
 function updateProgressUI() {
@@ -375,6 +564,42 @@ playBtn.addEventListener("click", togglePlay);
 prevBtn.addEventListener("click", prevTrack);
 nextBtn.addEventListener("click", nextTrack);
 
+if (playlistToggleBtn && playlistPanel) {
+  playlistToggleBtn.addEventListener("click", () => {
+    togglePlaylistPanel();
+  });
+
+  document.addEventListener("click", (e) => {
+    if (playlistPanel.hidden) return;
+    if (!(e.target instanceof Node)) return;
+    if (playlistPanel.contains(e.target) || playlistToggleBtn.contains(e.target)) return;
+    setPlaylistPanelOpen(false);
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key !== "Escape") return;
+    if (playlistPanel.hidden) return;
+    setPlaylistPanelOpen(false);
+  });
+}
+
+if (playlistEl) {
+  playlistEl.addEventListener("click", (e) => {
+    if (!(e.target instanceof Element)) return;
+    const btn = e.target.closest(".playlistItem__btn");
+    if (!btn) return;
+
+    const idx = Number(btn.dataset.index);
+    if (!Number.isFinite(idx)) return;
+
+    if (idx === currentIndex) togglePlay();
+    else {
+      loadTrack(idx);
+      void safePlay();
+    }
+  });
+}
+
 volumeRange.addEventListener("input", () => {
   audio.volume = clamp(Number(volumeRange.value), 0, 1);
 });
@@ -409,7 +634,8 @@ audio.addEventListener("ended", () => {
 });
 audio.addEventListener("error", () => {
   updatePlayUI();
-  console.warn("音频加载失败：请确认 assets/shalong.mp3 存在且可访问");
+  const track = tracks[currentIndex];
+  console.warn(`音频加载失败：请确认 ${track?.src || "assets/xxx.mp3"} 存在且可访问`);
 });
 
 coverImg.addEventListener("load", () => {
@@ -417,5 +643,12 @@ coverImg.addEventListener("load", () => {
   syncLyrics();
 });
 
+coverImg.addEventListener("error", () => {
+  if (coverImg.dataset.fallbackApplied === "1") return;
+  coverImg.dataset.fallbackApplied = "1";
+  coverImg.src = "./images/Easonchan-H3M-cover.jpg";
+});
+
 audio.volume = clamp(Number(volumeRange.value), 0, 1);
+renderPlaylist();
 loadTrack(0);

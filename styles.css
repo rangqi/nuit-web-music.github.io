@@ -111,6 +111,7 @@ body.is-playing .disc {
 
 .infoArea {
   max-width: 660px;
+  width: min(660px, 100%);
   margin: 0;
   justify-self: start;
   margin-left: 160px;
@@ -122,11 +123,23 @@ body.is-playing .disc {
   font-size: 34px;
   font-weight: 900;
   letter-spacing: 0.3px;
+  width: 100%;
+  height: 42px;
+  line-height: 42px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .songArtist {
   margin-top: 10px;
   color: var(--muted);
+  width: 100%;
+  height: 20px;
+  line-height: 20px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .lyrics {
@@ -136,14 +149,18 @@ body.is-playing .disc {
   background: var(--panel);
   border: 1px solid var(--stroke);
   box-shadow: var(--shadow);
+  position: relative;
+  width: 100%;
 }
 
 .lyricsLines {
   margin-top: 12px;
-  max-height: min(46vh, 380px);
+  width: 100%;
+  height: min(46vh, 380px);
   overflow: auto;
+  overflow-x: hidden;
   padding-right: 10px;
-  scrollbar-gutter: stable;
+  scrollbar-gutter: stable both-edges;
   text-align: center;
 }
 
@@ -201,12 +218,153 @@ body.is-playing .disc {
   color: rgba(255, 255, 255, 0.86);
 }
 
+.lyricEmpty {
+  position: absolute;
+  left: 16px;
+  right: 16px;
+  top: 16px;
+  margin-top: 0;
+}
+
 .studentLine {
   margin-top: 14px;
   padding-top: 12px;
   border-top: 1px solid rgba(255, 255, 255, 0.08);
   color: var(--muted2);
   font-size: 12px;
+}
+
+.playlist {
+  margin-top: 12px;
+  padding: 14px 16px;
+  border-radius: 14px;
+  background: var(--panel);
+  border: 1px solid var(--stroke);
+  box-shadow: var(--shadow);
+  text-align: left;
+}
+
+.playlist__header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.playlist__title {
+  margin: 0;
+  font-size: 14px;
+  letter-spacing: 0.3px;
+}
+
+.playlist__count {
+  font-size: 12px;
+  color: var(--muted2);
+}
+
+.playlist__list {
+  margin: 10px 0 0;
+  padding: 0;
+  list-style: none;
+  max-height: min(26vh, 210px);
+  overflow: auto;
+  scrollbar-gutter: stable;
+}
+
+.playlist__list::-webkit-scrollbar {
+  width: 10px;
+}
+
+.playlist__list::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 999px;
+}
+
+.playlist__list::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.playlistItem + .playlistItem {
+  margin-top: 8px;
+}
+
+.playlistItem__btn {
+  width: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.18);
+  color: var(--text);
+  padding: 10px 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  transition: background 0.14s ease, border-color 0.14s ease, transform 0.08s ease;
+}
+
+.playlistItem__btn:hover {
+  background: rgba(0, 0, 0, 0.28);
+  border-color: rgba(255, 255, 255, 0.18);
+}
+
+.playlistItem__btn:active {
+  transform: translateY(1px);
+}
+
+.playlistItem__btn:focus-visible {
+  outline: 2px solid rgba(236, 65, 65, 0.65);
+  outline-offset: 2px;
+}
+
+.playlistItem__meta {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.playlistItem__name {
+  font-size: 14px;
+  font-weight: 800;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.playlistItem__artist {
+  font-size: 12px;
+  color: var(--muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.playlistItem__state {
+  font-size: 12px;
+  color: var(--muted2);
+  flex: none;
+}
+
+.playlistItem.is-active .playlistItem__btn {
+  background: rgba(236, 65, 65, 0.14);
+  border-color: rgba(236, 65, 65, 0.55);
+}
+
+.playlistItem.is-active .playlistItem__state {
+  color: rgba(255, 255, 255, 0.86);
+}
+
+.playlistPanel {
+  position: absolute;
+  right: 18px;
+  bottom: calc(100% + 10px);
+  width: min(380px, calc(100vw - 36px));
+  z-index: 30;
+}
+
+.playlistPanel .playlist {
+  margin-top: 0;
 }
 
 .bar {
@@ -426,5 +584,13 @@ body.is-playing .playIcon .icon--pause {
 
   .vol {
     width: 220px;
+  }
+
+  .playlistPanel {
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+    width: min(520px, calc(100vw - 24px));
+    bottom: calc(100% + 12px);
   }
 }

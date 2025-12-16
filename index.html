@@ -74,7 +74,30 @@
             />
           </svg>
           <input id="volumeRange" class="vol" type="range" min="0" max="1" value="0.85" step="0.01" />
+          <button
+            id="playlistToggleBtn"
+            class="iconBtn"
+            type="button"
+            title="播放列表"
+            aria-label="播放列表"
+            aria-controls="playlistPanel"
+            aria-expanded="false"
+          >
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M4 6h16v2H4V6zm0 5h16v2H4v-2zm0 5h16v2H4v-2z" />
+            </svg>
+          </button>
         </div>
+      </div>
+
+      <div id="playlistPanel" class="playlistPanel" hidden role="dialog" aria-label="播放列表面板">
+        <section class="playlist" aria-label="播放列表">
+          <div class="playlist__header">
+            <h2 class="playlist__title">播放列表</h2>
+            <span id="playlistCount" class="playlist__count" aria-live="polite"></span>
+          </div>
+          <ol id="playlist" class="playlist__list" aria-label="歌曲列表"></ol>
+        </section>
       </div>
     </footer>
 
